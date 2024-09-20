@@ -2,12 +2,12 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 const placeSchema = new Schema({
-  name: { type: String, require: true },
-  location: { type: String, require: true },
-  image: { type: String, require: true },
-  mapURL: { type: String, require: true },
-  description: { type: String, require: true },
-  comments: { type: Array, require: true },
+  name: { type: String, required: true },
+  location: { type: String, required: true },
+  image: { type: String, required: true },
+  mapURL: { type: String, required: true },
+  description: { type: String, required: true },
+  // comments: { type: Array, required: true },
 });
 
 const Place = mongoose.models.Place || mongoose.model("Place", placeSchema);

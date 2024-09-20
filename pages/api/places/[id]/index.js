@@ -16,9 +16,15 @@ export default async function handler(request, response) {
         const places = await Place.findById(id);
         console.log("places", places);
         return response.status(200).json(places);
-        // } else if (request.method === "POST") {
-        //   await Place.create(request.body);
-        //   response.status(200).json({ success: "Place successfully created" });
+      } else if (request.method === "PATCH") {
+        await Place.findByIdAndUpdate(id, {
+          name: request.body.name,
+          location: request.body.location,
+          image: request.body.image,
+          mapURL: request.body.mapURL,
+          description: request.body.description,
+        });
+        response.status(200).json({ success: "Place successfully edited" });
       }
     } catch (e) {
       console.log(e);

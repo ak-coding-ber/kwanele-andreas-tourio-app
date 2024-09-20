@@ -6,7 +6,6 @@ import { StyledLink } from "../../../components/StyledLink.js";
 import { StyledButton } from "../../../components/StyledButton.js";
 import { StyledImage } from "../../../components/StyledImage.js";
 import Comments from "../../../components/Comments.js";
-import { useState } from "react";
 
 const ImageContainer = styled.div`
   position: relative;
@@ -37,13 +36,8 @@ export default function DetailsPage() {
   const {
     data: place,
     isLoading,
-    mutate,
     error,
   } = useSWR(id ? `/api/places/${id}` : null);
-  const [isEditMode, setIsEditMode] = useState(false);
-  // const comments = place.comments;
-
-  console.log("place  inside Detials Page", place);
 
   if (!isReady || isLoading || error || !place) return <h2>Loading...</h2>;
 
