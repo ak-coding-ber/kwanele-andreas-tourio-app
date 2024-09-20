@@ -25,15 +25,15 @@ export const Label = styled.label`
 `;
 
 export default function Form({ onSubmit, formName, defaultData }) {
-  function handleSubmit(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    onSubmit(data);
-  }
+  // function handleSubmit(event) {
+  //   event.preventDefault();
+  //   const formData = new FormData(event.target);
+  //   const data = Object.fromEntries(formData);
+  //   onSubmit(data);
+  // }
 
   return (
-    <FormContainer aria-labelledby={formName} onSubmit={handleSubmit}>
+    <FormContainer aria-labelledby={formName} onSubmit={onSubmit}>
       <Label htmlFor="name">Name</Label>
       <Input
         id="name"
@@ -70,7 +70,7 @@ export default function Form({ onSubmit, formName, defaultData }) {
         rows="10"
         defaultValue={defaultData?.description}
       ></Textarea>
-      <StyledButton type="submit">
+      <StyledButton type="submit" onSubmit={onSubmit}>
         {defaultData ? "Update place" : "Add place"}
       </StyledButton>
     </FormContainer>
