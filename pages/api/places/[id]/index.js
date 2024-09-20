@@ -1,23 +1,42 @@
-import { db_places } from "../../../../lib/db_places";
-import { db_comments } from "../../../../lib/db_comments";
+import Place from "../../../../db/models/Place";
+import dbConnect from "../../../../db/connect";
 
-export default function handler(request, response) {
+export default async function handler(request, response) {
   const { id } = request.query;
 
   if (!id) {
     return;
   }
+  console.log("id", id);
 
-  const place = db_places.find((place) => place._id.$oid === id);
-  const comment = place?.comments;
-  const allCommentIds = comment?.map((comment) => comment.$oid) || [];
-  const comments = db_comments.filter((comment) =>
-    allCommentIds.includes(comment._id.$oid)
-  );
-
-  if (!place) {
-    return response.status(404).json({ status: "Not found" });
+  try {
+    await dbConnect();
+    try {
+      if (request.method === "GET") {
+        const places = await Place.findById(id);
+        console.log("places", places);
+        return response.status(200).json(places);
+        // } else if (request.method === "POST") {
+        //   await Place.create(request.body);
+        //   response.status(200).json({ success: "Place successfully created" });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  } catch (e) {
+    console.log(e);
   }
 
-  response.status(200).json({ place: place, comments: comments });
+  // const place = db_places.find((place) => place._id.$oid === id);
+  // const comment = place?.comments;
+  // const allCommentIds = comment?.map((comment) => comment.$oid) || [];
+  // const comments = db_comments.filter((comment) =>
+  //   allCommentIds.includes(comment._id.$oid)
+  // );
+
+  // if (!place) {
+  //   return response.status(404).json({ status: "Not found" });
+  // }
+
+  // response.status(200).json({ place: place, comments: comments });
 }
