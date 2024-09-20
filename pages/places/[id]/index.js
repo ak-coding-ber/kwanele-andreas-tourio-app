@@ -6,6 +6,7 @@ import { StyledLink } from "../../../components/StyledLink.js";
 import { StyledButton } from "../../../components/StyledButton.js";
 import { StyledImage } from "../../../components/StyledImage.js";
 import Comments from "../../../components/Comments.js";
+import { useState } from "react";
 
 const ImageContainer = styled.div`
   position: relative;
@@ -34,12 +35,17 @@ export default function DetailsPage() {
   const { isReady } = router;
   const { id } = router.query;
   const {
-    data: { place, comments } = {},
+    data: place,
     isLoading,
+    mutate,
     error,
-  } = useSWR(`/api/places/${id}`);
+  } = useSWR(id ? `/api/places/${id}` : null);
+  const [isEditMode, setIsEditMode] = useState(false);
+  // const comments = place.comments;
 
-  if (!isReady || isLoading || error) return <h2>Loading...</h2>;
+  console.log("place  inside Detials Page", place);
+
+  if (!isReady || isLoading || error || !place) return <h2>Loading...</h2>;
 
   function deletePlace() {
     console.log("deleted?");
@@ -76,7 +82,7 @@ export default function DetailsPage() {
           Delete
         </StyledButton>
       </ButtonContainer>
-      <Comments locationName={place.name} comments={comments} />
+      <Comments locationName={place.name} comments={place.comments} />
     </>
   );
 }
