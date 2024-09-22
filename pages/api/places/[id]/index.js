@@ -1,5 +1,6 @@
 import Place from "../../../../db/models/Place";
 import dbConnect from "../../../../db/connect";
+import Comments from "../../../../db/models/Comments";
 
 export default async function handler(request, response) {
   const { id } = request.query;
@@ -13,8 +14,7 @@ export default async function handler(request, response) {
     await dbConnect();
     try {
       if (request.method === "GET") {
-        const places = await Place.findById(id);
-        console.log("places", places);
+        const places = await Place.findById(id).populate("comments");
         return response.status(200).json(places);
       } else if (request.method === "PATCH") {
         await Place.findByIdAndUpdate(id, {

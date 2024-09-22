@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 const commentsSchema = new Schema({
-  name: { type: String, require: true },
-  comment: { type: String, require: true },
+  name: { type: String, required: true },
+  comment: { type: String, required: true },
 });
 
 const Comments =

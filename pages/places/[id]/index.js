@@ -53,6 +53,8 @@ export default function DetailsPage() {
     }
   }
 
+  console.log(place.comments);
+
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
