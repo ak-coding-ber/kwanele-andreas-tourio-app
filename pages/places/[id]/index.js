@@ -58,7 +58,6 @@ export default function DetailsPage() {
     e.preventDefault();
     const formData = new FormData(e.target);
     const commentData = Object.fromEntries(formData);
-    console.log(commentData);
     const response = await fetch(`/api/places/${id}`, {
       method: "POST",
       headers: {
