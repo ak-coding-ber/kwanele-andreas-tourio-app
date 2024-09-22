@@ -25,6 +25,15 @@ export default async function handler(request, response) {
           description: request.body.description,
         });
         response.status(200).json({ success: "Place successfully edited" });
+      } else if (request.method === "DELETE") {
+        const place = await Place.findByIdAndDelete(id);
+        console.log("place", place);
+        // await Reviews.deleteMany({
+        //   _id: { $in: product.reviews },
+        // });
+        // response.status(260).json("Place and comments deleted");
+        response.status(260).json("Place deleted");
+        return response.status(200).json(place);
       }
     } catch (e) {
       console.log(e);
