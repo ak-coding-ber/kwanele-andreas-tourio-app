@@ -27,12 +27,11 @@ export default async function handler(request, response) {
         response.status(200).json({ success: "Place successfully edited" });
       } else if (request.method === "DELETE") {
         const place = await Place.findByIdAndDelete(id);
-        console.log("place", place);
-        // await Reviews.deleteMany({
-        //   _id: { $in: product.reviews },
-        // });
-        // response.status(260).json("Place and comments deleted");
-        response.status(260).json("Place deleted");
+        // Making sure comments associated to the place are also deleted in comments collection
+        await Comments.deleteMany({
+          _id: { $in: place.comments },
+        });
+        response.status(260).json("Place and comments deleted");
         return response.status(200).json(place);
       }
     } catch (e) {
