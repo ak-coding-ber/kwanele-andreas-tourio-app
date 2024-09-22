@@ -37,6 +37,7 @@ export default function DetailsPage() {
     data: place,
     isLoading,
     error,
+    mutate,
   } = useSWR(id ? `/api/places/${id}` : null);
 
   if (!isReady || isLoading || error || !place) return <h2>Loading...</h2>;
@@ -53,6 +54,23 @@ export default function DetailsPage() {
     }
   }
 
+  async function handleSubmitComment(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const commentData = Object.fromEntries(formData);
+    const response = await fetch(`/api/places/${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(commentData),
+    });
+    if (response.ok) {
+      mutate();
+    } else {
+      console.error(`Error: ${response.status}`);
+    }
+  }
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
@@ -84,7 +102,11 @@ export default function DetailsPage() {
           Delete
         </StyledButton>
       </ButtonContainer>
-      <Comments locationName={place.name} comments={place.comments} />
+      <Comments
+        locationName={place.name}
+        comments={place.comments}
+        onSubmit={handleSubmitComment}
+      />
     </>
   );
 }
