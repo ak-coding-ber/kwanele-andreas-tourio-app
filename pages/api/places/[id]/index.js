@@ -33,6 +33,20 @@ export default async function handler(request, response) {
         });
         response.status(260).json("Place and comments deleted");
         return response.status(200).json(place);
+      } else if (request.method === "POST") {
+        try {
+          const newComment = await Comment.create(request.body);
+          await Place.findByIdAndUpdate(
+            id,
+            { $push: { comments: newComment._id } },
+            { new: true }
+          );
+          response
+            .status(200)
+            .json({ success: "comment successfully created" });
+        } catch (e) {
+          console.log(e);
+        }
       }
     } catch (e) {
       console.log(e);
