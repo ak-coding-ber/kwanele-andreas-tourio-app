@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
-const commentsSchema = new Schema({
+const commentSchema = new Schema({
   name: { type: String, required: true },
   comment: { type: String, required: true },
 });
 
-const Comments =
-  mongoose.models.Comments || mongoose.model("Comments", commentsSchema);
-export default Comments;
+const Comment =
+  mongoose.models.Comment || mongoose.model("Comment", commentSchema);
+export default Comment;

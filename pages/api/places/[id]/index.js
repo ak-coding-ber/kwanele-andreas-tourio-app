@@ -1,6 +1,6 @@
 import Place from "../../../../db/models/Place";
 import dbConnect from "../../../../db/connect";
-import Comments from "../../../../db/models/Comments";
+import Comment from "../../../../db/models/Comment";
 
 export default async function handler(request, response) {
   const { id } = request.query;
@@ -28,7 +28,7 @@ export default async function handler(request, response) {
       } else if (request.method === "DELETE") {
         const place = await Place.findByIdAndDelete(id);
         // Making sure comments associated to the place are also deleted in comments collection
-        await Comments.deleteMany({
+        await Comment.deleteMany({
           _id: { $in: place.comments },
         });
         response.status(260).json("Place and comments deleted");
