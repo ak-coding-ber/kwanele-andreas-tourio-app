@@ -15,9 +15,11 @@ const ImageContainer = styled.div`
 `;
 
 const ButtonContainer = styled.section`
+  width: 60%;
+  margin: auto;
   display: flex;
   justify-content: space-between;
-  gap: 0.2rem;
+  gap: 1rem;
 
   & > * {
     flex-grow: 1;
@@ -82,7 +84,7 @@ export default function DetailsPage() {
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
-        <StyledLink justifySelf="start" margin_top={"1rem"}>
+        <StyledLink justifySelf="start" margin={"1rem 0 1rem 1rem"}>
           back
         </StyledLink>
       </Link>
@@ -94,6 +96,7 @@ export default function DetailsPage() {
           height={300}
           alt=""
           border="1px solid #344e41"
+          margin="0 1rem"
         />
       </ImageContainer>
       <StyledHeading>
@@ -102,7 +105,7 @@ export default function DetailsPage() {
       <Link href={place.mapURL} passHref legacyBehavior>
         <StyledLocationLink>Location on Google Maps</StyledLocationLink>
       </Link>
-      <p>{place.description}</p>
+      <p style={{ textAlign: "center" }}>{place.description}</p>
       <ButtonContainer>
         <Link href={`/places/${id}/edit`} passHref legacyBehavior>
           <StyledLink>Edit</StyledLink>

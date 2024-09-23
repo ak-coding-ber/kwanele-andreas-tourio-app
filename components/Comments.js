@@ -20,12 +20,20 @@ export default function Comments({ locationName, comments, onSubmit }) {
   `;
 
   const CommentContainer = styled.li`
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 90%;
     background-color: #f2e8cf;
     border-radius: 0.5rem;
     padding: 0 2rem 2rem 2rem;
     box-shadow: 5px 5px 15px 0px #000000;
     margin-bottom: 1rem;
     list-style-type: none;
+  `;
+
+  const StyledSpan = styled.span`
+    word-break: break-all;
   `;
 
   return (
@@ -40,7 +48,7 @@ export default function Comments({ locationName, comments, onSubmit }) {
       {comments && (
         <>
           <h1> {comments.length} fans commented on this place:</h1>
-          <ul>
+          <ul style={{ paddingLeft: 0 }}>
             {comments.map(({ name, comment }, idx) => {
               return (
                 <>
@@ -50,7 +58,7 @@ export default function Comments({ locationName, comments, onSubmit }) {
                         <strong>{name}</strong> commented on {locationName}
                       </small>
                     </p>
-                    <span>{comment}</span>
+                    <StyledSpan>{comment}</StyledSpan>
                   </CommentContainer>
                 </>
               );
