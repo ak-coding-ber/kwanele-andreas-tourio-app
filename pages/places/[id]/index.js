@@ -9,6 +9,8 @@ import Comments from "../../../components/Comments.js";
 
 const ImageContainer = styled.div`
   position: relative;
+  display: flex;
+  justify-content: center;
   height: 15rem;
 `;
 
@@ -79,12 +81,11 @@ export default function DetailsPage() {
       <ImageContainer>
         <StyledImage
           src={place.image}
-          priority
-          fill
-          sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
+          responsive
+          width={600}
+          height={300}
           alt=""
+          border="1px solid #344e41"
         />
       </ImageContainer>
       <h2>

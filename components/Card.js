@@ -18,6 +18,7 @@ const ImageContainer = styled.div`
   position: relative;
   height: 10rem;
   margin: 1rem 0;
+  border: 1px solid #f2e8cf;
 `;
 
 const ImageCaption = styled.figcaption`
