@@ -3,14 +3,29 @@ import styled from "styled-components";
 import { StyledImage } from "./StyledImage.js";
 
 const Article = styled.article`
-  border: 5px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   border-radius: 0.8rem;
   padding: 0.5rem;
+  margin: 1rem;
+  background-color: #a3b18a;
+  box-shadow: 5px 1px 15px 0px rgba(0, 0, 0, 0.7);
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   height: 10rem;
+  margin: 1rem 0;
+  border: 1px solid #f2e8cf;
+`;
+
+const ImageCaption = styled.figcaption`
+  position: relative;
+  margin-top: 3rem;
+  font-size: 2rem;
+  text-align: center;
 `;
 
 const Figure = styled.figure`
@@ -47,16 +62,9 @@ export default function Card({ name, image, location, id }) {
     <Article>
       <Figure>
         <ImageContainer>
-          <StyledImage
-            src={image}
-            fill
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-            alt=""
-          />
+          <StyledImage src={image} width={500} height={200} alt="" />
         </ImageContainer>
-        <figcaption>{name}</figcaption>
+        <ImageCaption>{name}</ImageCaption>
       </Figure>
       <p>Location: {location}</p>
       <Link href={`places/${id}`} passHref legacyBehavior>
