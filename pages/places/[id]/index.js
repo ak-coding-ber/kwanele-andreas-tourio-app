@@ -29,6 +29,12 @@ const StyledLocationLink = styled(StyledLink)`
   text-align: center;
   background-color: #a3b18a;
   color: black;
+  width: 80%;
+  justify-self: center;
+`;
+
+const StyledHeading = styled.h2`
+  text-align: center;
 `;
 
 export default function DetailsPage() {
@@ -76,7 +82,9 @@ export default function DetailsPage() {
   return (
     <>
       <Link href={"/"} passHref legacyBehavior>
-        <StyledLink justifySelf="start">back</StyledLink>
+        <StyledLink justifySelf="start" margin_top={"1rem"}>
+          back
+        </StyledLink>
       </Link>
       <ImageContainer>
         <StyledImage
@@ -88,9 +96,9 @@ export default function DetailsPage() {
           border="1px solid #344e41"
         />
       </ImageContainer>
-      <h2>
+      <StyledHeading>
         {place.name}, {place.location}
-      </h2>
+      </StyledHeading>
       <Link href={place.mapURL} passHref legacyBehavior>
         <StyledLocationLink>Location on Google Maps</StyledLocationLink>
       </Link>

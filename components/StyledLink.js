@@ -8,6 +8,7 @@ export const StyledLink = styled.a`
   color: #dad7cd;
   text-decoration: none;
   font-weight: bold;
+  margin-top: ${(props) => props.margin_top || "0"};
 
   ${({ justifySelf }) =>
     justifySelf &&
