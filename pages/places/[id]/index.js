@@ -15,9 +15,11 @@ const ImageContainer = styled.div`
 `;
 
 const ButtonContainer = styled.section`
+  width: 60%;
+  margin: auto;
   display: flex;
   justify-content: space-between;
-  gap: 0.2rem;
+  gap: 1rem;
 
   & > * {
     flex-grow: 1;
