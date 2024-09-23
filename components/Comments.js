@@ -23,7 +23,7 @@ export default function Comments({ locationName, comments, onSubmit }) {
     display: flex;
     flex-direction: column;
     margin: auto;
-    max-width: 75%;
+    max-width: 90%;
     background-color: #f2e8cf;
     border-radius: 0.5rem;
     padding: 0 2rem 2rem 2rem;
