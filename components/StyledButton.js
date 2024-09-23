@@ -1,10 +1,11 @@
 import styled, { css } from "styled-components";
 
 export const StyledButton = styled.button`
-  background-color: lightsalmon;
+  background-color: #344e41;
   padding: 0.8rem;
   border-radius: 0.6rem;
-  color: black;
+  box-shadow: 5px 5px 15px 0px #000000;
+  color: #dad7cd;
   text-decoration: none;
   font-weight: bold;
   border: none;

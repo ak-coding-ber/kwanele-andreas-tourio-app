@@ -3,12 +3,17 @@ import styled from "styled-components";
 import { StyledImage } from "./StyledImage.js";
 
 const Article = styled.article`
-  border: 5px solid black;
+  border: 3px solid black;
   border-radius: 0.8rem;
   padding: 0.5rem;
+  margin: 1rem;
+  background-color: #a3b18a;
+  box-shadow: 5px 1px 15px 0px rgba(0, 0, 0, 0.4);
 `;
 
 const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
   height: 10rem;
 `;
@@ -47,14 +52,7 @@ export default function Card({ name, image, location, id }) {
     <Article>
       <Figure>
         <ImageContainer>
-          <StyledImage
-            src={image}
-            fill
-            sizes="(max-width: 768px) 100vw,
-              (max-width: 1200px) 50vw,
-              33vw"
-            alt=""
-          />
+          <StyledImage src={image} width={500} height={200} alt="" />
         </ImageContainer>
         <figcaption>{name}</figcaption>
       </Figure>
